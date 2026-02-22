@@ -41,7 +41,7 @@ public class Drive extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    driveSubsystem.driveTank(double leftSpeed, double rightSpeed);
+    driveSubsystem.driveTank(0,0);
        
   }
 
