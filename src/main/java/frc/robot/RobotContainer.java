@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -30,8 +31,12 @@ public class RobotContainer {
   private final CANFuelSubsystem fuelSubsystem = new CANFuelSubsystem();
 
   // The driver's controller
-  private final CommandXboxController driverController = new CommandXboxController(
+ 
+   private final CommandXboxController driverControllerLeft = new CommandXboxController(
       DRIVER_CONTROLLER_PORT);
+    private final CommandXboxController driverControllerRight = new CommandXboxController(
+      DRIVER_CONTROLLER_PORT_2);   
+
 
   // The operator's controller
   private final CommandXboxController operatorController = new CommandXboxController(
@@ -79,11 +84,12 @@ public class RobotContainer {
     // controller. The Y axis of the controller is inverted so that pushing the
     // stick away from you (a negative value) drives the robot forwards (a positive
     // value)
-    driveSubsystem.setDefaultCommand(new Drive(driveSubsystem, driverController));
+   
+   driveSubsystem.setDefaultCommand(new Drive(driveSubsystem, driverControllerLeft, driverControllerRight));
 
     fuelSubsystem.setDefaultCommand(fuelSubsystem.run(() -> fuelSubsystem.stop()));
   }
-
+ 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
